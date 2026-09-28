@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>JavaScript DOM 객체</h1>
+        <p>DOM(Document Object Model) 객체는 HTML 문서를 객체로 표현한 모델입니다. DOM을 통해 JavaScript에서 HTML 요소를 조작할 수 있습니다.</p>    
+    </header>
+    <main>
+        <h1>DOM(Document Object Model) 객체</h1>
+        <p>DOM은 HTML 문서를 객체로 표현한 모델입니다. DOM을 통해 JavaScript에서 HTML 요소를 조작할 수 있습니다.</p>
+        <button id="myButton">버튼</button> 
+    </main>
+    <aside>
+        <h2>DOM 객체 예제</h2>
+        <p>아래는 DOM  사용하여 HTML 요소를 조작하는 예제입니다.</p>
+        <ul>
+            <li>document.title: 문서의 제목</li>
+            <li>document.URL: 문서의 URL</li>
+            <li>document.body: 문서의 body 요소</li>
+            <li>document.head: 문서의 head 요소</li>
+            <li>document.getElementById('myButton'): id가 'myButton'인 요소</li>
+            <li>document.getElementsByClassName('myClass'): class가 'myClass'인 요소들</li>
+            <li>document.getElementsByTagName('button'): button 태그 요소들</li>
+            <li>document.querySelector('#myButton'): CSS 선택자 '#myButton'에 해당하는 첫 번째 요소</li>
+            <li>document.querySelectorAll('.myClass'): CSS 선택자 '.myClass'에 해당하는 모든 요소들</li>
+        </ul>
+    </aside>    
+    <footer>
+        <p>DOM 객체를 사용하여 HTML 요소를 조작할 수 있습니다.</p>  
+    </footer>
+
+
+    <script>
+        // 내장객체 
+        // screen, window, document, 
+        // document 인스턴스(객체) : HTML 태그
+        // window 인스턴스(객체) : 브라우저 창
+        // screen 인스턴스(객체) : 모니터 화면
+        
+
+        
+
+
+
+
+
+
+        // DOM(Document Object Model) 객체
+        console.log(document.title); // Output: Title of the document
+        console.log(document.URL); // Output: URL of the document
+        console.log(document.body); // Output: Body element of the document
+        console.log(document.head); // Output: Head element of the document
+        console.log(document.getElementById('myButton')); // Output: Element with id 'myButton'
+        console.log(document.getElementsByClassName('myClass')); // Output: HTMLCollection of elements with class 'myClass'
+        console.log(document.getElementsByTagName('button')); // Output: HTMLCollection of button elements
+        console.log(document.querySelector('#myButton')); // Output: First element that matches the CSS selector '#myButton'
+        console.log(document.querySelectorAll('.myClass')); // Output: NodeList of all elements that match the CSS selector '.myClass' 
+    </script>
+</body>
+</html>

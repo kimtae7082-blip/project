@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<body>
+    <script>
+        // test test test test
+        let person = {
+            name: 'John',
+            age: 30,
+            greet: function() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        };
+        // Accessing properties using dot notation and bracket notation
+        // Accessing properties using dot notation and bracket notation
+        // Accessing properties
+        console.log(person.name); // Output: John
+        // Accessing properties
+        // Accessing properties using dot notation and bracket notation
+        console.log(person.name); // Output: John
+        console.log(person["name"]); // Output: John
+        person.gender = 'male'; // Adding a new property
+        console.log(person); // Output: { name: 'John', age: 30, greet: [Function: greet], gender: 'male' } 
+        person.gender = 'female'; // Modifying an existing property
+        console.log(person); // Output: { name: 'John', age: 30, greet: [Function: greet], gender: 'female' }
+        // Deleting a property
+        delete (person.gender); // Deleting a property
+        console.log(person); // Output: { name: 'John', age: 30, greet: [Function: greet] }
+        
+        let person = {
+            name: 'John',
+            age: 30,
+            greet: function() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        };
+        function PersonFunction(name, age) {
+            this.name = name;
+            this.age = age;
+            this.greet = function() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            };
+        }
+
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        }
+
+
+        const personAlice = new PersonFunction('Alice', 30);
+        personAlice.greet(); // Output: Hello, my name is Alice and I am  30 years old.
+
+        const person1 = new PersonFunction('Alice', 30);
+        person1.greet(); // Output: Hello, my name is Alice and I am 30 years old.
+
+        const person2 = new Person('Bob', 25);
+        person2.greet(); // Output: Hello, my name is Bob and I am 25 years old.
+
+
+        let num = new Number(42);
+        console.log(num); // Output: [Number: 42]
+        console.log(num.valueOf()); // Output: 42
+        console.log(num.toString()); // Output: "42"
+        console.log(num.toFixed(2)); // Output: "42.00"
+        console.log(num.toExponential(2)); // Output: "4.20e+1"
+        let num2 = 3.14159;
+        console.log(num2.toFixed(2)); // Output: "3.14"
+        console.log(num2.toExponential(2)); // Output: "3.14e+0"
+
+
+        let str = new String('Hello, World!');
+        console.log(str); // Output: [String: 'Hello, World!']
+        console.log(str.valueOf()); // Output: "Hello, World!"
+        console.log(str.toString()); // Output: "Hello, World!"
+        console.log(str.length); // Output: 13
+        let str2 = 'Hello, World!';
+        console.log(str2.length); // Output: 13
+
+
+        let bool = new Boolean(true);
+        console.log(bool); // Output: [Boolean: true]
+        console.log(bool.valueOf()); // Output: true
+
+        
+        let arr = new Array(1, 2, 3);
+        console.log(arr); // Output: [ 1, 2, 3 ]
+        console.log(arr.length); // Output: 3
+        console.log(arr[0]); // Output: 1
+
+        let obj = new Object({ key: 'value' });
+        console.log(obj); // Output: { key: 'value' }
+        console.log(obj.key); // Output: value
+        console.log(obj['key']); // Output: value
+        console.log(Object.keys(obj)); // Output: [ 'key' ]
+        delete obj.key; // Deleting a property
+        console.log(obj); // Output: {}
+
+        let date = new Date();
+        console.log(date); // Output: current date and time
+        console.log(date.getFullYear()); // Output: current year
+        console.log(date.getMonth()); // Output: current month (0-11)
+        console.log(date.getDate()); // Output: current day of the month (1-31)
+        console.log(date.getDay()); // Output: current day of the week (0-6)
+
+        //정규표현식 RegExp, Regular Expression, Regex
+        let regex = new RegExp('ab+c');
+        console.log(regex); // Output: /ab+c/
+        console.log(regex.test('abc')); // Output: true
+        console.log(regex.test('ac')); // Output: false
+        const regex2 = /ab+c/;
+        console.log(regex2.test('abc')); // Output: true
+        console.log(regex2.test('ac')); // Output: false
+        // 010-1111-1111 RegExp  //정규표현식
+        const phoneRegex = /^010-\d{4}-\d{4}$/;
+        console.log(phoneRegex.test('010-1234-5678')); // Output: true
+        console.log(phoneRegex.test('011-1234-5678')); // Output: false 
+        const phoneRegex2 = /^01[016789]-\d{3,4}-\d{4}$/;
+        console.log(phoneRegex2.test('010-1234-5678')); // Output: true
+        console.log(phoneRegex2.test('011-1234-5678')); // Output: true
+        console.log(phoneRegex2.test('016-123-4567')); // Output: true
+        console.log(phoneRegex2.test('019-1234-5678')); // Output: true
+        
+        //email RegExp //정규표현식
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        console.log(emailRegex.test('user@example.com')); // Output: true
+        console.log(emailRegex.test('userexample.com')); // Output: false
+        //email RegExp 2 //정규표현식   
+        const emailRegex2 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        console.log(emailRegex2.test('user@example.com')); // Output: true
+        console.log(emailRegex2.test('userexample.com')); // Output: false
+
+
+
+
+    </script>
+</body>
+</html>

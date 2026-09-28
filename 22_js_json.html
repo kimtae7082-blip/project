@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>JSON 객체</h1>
+    <p>JSON(JavaScript Object Notation)은 데이터를 교환하기 위한 경량의 데이터 형식입니다. JSON은 JavaScript 객체 표기법을 기반으로 하며, 텍스트 형식으로 데이터를
+        표현합니다.</p>
+    <textarea id="jsonInput" rows="10" cols="50">
+        {
+        "name": "John Doe",
+        "age": 30,
+        "email": "john.doe@example.com"
+        }
+    </textarea>
+    <br>
+    <button id="parseBtn">Parse JSON</button>
+    <pre id="result">텅~</pre>
+
+    <script>
+        const input = document.querySelector("#jsonInput");
+        const result = document.querySelector("#result");
+
+        document.querySelector("#parseBtn").addEventListener("click", () => {
+
+                const data = JSON.parse(input.value);
+                
+                result.textContent = `이름: ${data.name}  도메인: ${data.domain}` +
+                JSON.stringify(data, null, 2);
+                
+                
+                console.log(data); // Output: { name: 'John Doe', age: 30, email: '
+                console.log('이름:'+ data.name+' '+'도메인: '+ ' '+ data.domain); // Output: John Doe
+                console.log(`data.age`); // Output: 30
+                console.log(`${data.name}`); // Output: John Doe
+                console.log(`${data.age}`); // Output: 30
+
+
+        });
+        
+    </script>
+
+
+<script>
+    
+</script>
+</body>
+
+</html>

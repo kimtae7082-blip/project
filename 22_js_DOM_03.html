@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <button id="myButton">버튼</button>
+        <button id="myButton2" onclick="alert('버튼2가 클릭되었습니다!')">버튼2</button>
+    </main>
+
+    <script>
+        console.log(document.querySelector("#myButton"));
+        
+        document.getElementById("myButton").onclick = function() {
+            alert("버튼이 클릭되었습니다!");
+        };
+
+        document.querySelector("#myButton").addEventListener("click", function() {
+            alert("버튼이 클릭되었습니다!");
+        });
+
+    </script>
+
+    <script>
+        let h1 = document.createElement('h1');
+        h1.textContent = "JavaScript DOM 객체";
+        console.log(h1); // <h1>JavaScript DOM 객체</h1>
+        document.querySelector('main').appendChild(h1);
+        let p = document.createElement('p');
+        p.textContent = "DOM(Document Object Model) 객체는 HTML 문서를 객체로 표현한 모델입니다. DOM을 통해 JavaScript에서 HTML 요소를 조작할 수 있습니다.";
+        console.log(p); // <p>DOM(Document Object Model) 객체는 HTML 문서를 객체로 표현한 모델입니다. DOM을 통해 JavaScript에서 HTML 요소를 조작할 수 있습니다.</p>
+        document.querySelector('main').appendChild(p);  
+        let button = document.createElement('button');
+        button.textContent = "버튼";   
+        console.log(button); // <button>버튼</button>
+        document.querySelector('p').appendChild(button); 
+        
+
+    </script>    
+</body>
+</html>

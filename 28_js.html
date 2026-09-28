@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //JavaScript code goes here
+        let count = 0;
+        while (count < 5) {
+            console.log("This will run!");
+            count++;
+        }
+
+        for (let count = 0; count < 5; count++) {
+            console.log("This will run!");
+        }
+        //횟수가 아닌 사용자 응답에 따른 반복문에 while 주로 사용됨
+        let awser = 'y'
+        while (awser === 'n') {
+            console.log("This will run!");
+            awser = window.prompt("계속 진행하시겠습니까? (y/n)");
+        }
+    </script>
+    
+</body>
+</html>

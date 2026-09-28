@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET 필터 예제</title>
+</head>
+
+<body>
+    <h1>도메인별 사용자 조회</h1>
+    <select id="domain">
+        <option value="all">전체</option>
+        <option value="weather">weather</option>
+        <option value="economy">economy</option>
+    </select>
+    <button id="loadBtn">불러오기</button>
+    <ul id="list">텅~</ul>
+
+
+    <script>
+        const list = document.querySelector("#list");
+
+        document.querySelector("#loadBtn").addEventListener("click", async () => {
+            try {
+                const response = await fetch("./users.json");
+                if (!response.ok) 
+                    throw new Error(`HTTP ${response.status}`);
+
+                const users = await response.json();
+                const domain = document.querySelector("#domain").value;
+
+                // 삼항연산자
+                // if(a =="ej"){
+                //     a = "a"
+                // }else {
+                //     a = "b"
+                // }
+                // a = (a=='ej') ? "a" : "b";
+                // 조건식 ? true일때대입할값 : false일때대입할값
+
+
+                const filtered = domain === "all" ? users
+                    : users.filter(user => user.domain === domain);
+
+                list.innerHTML = filtered
+                    .map(user => `<li>${user.name} / ${user.email} / ${user.domain}</li>`)
+                    .join("");
+            } catch (error) {
+                list.innerHTML = `<li>오류: ${error.message}</li>`;
+            }
+        });
+
+
+    </script>
+
+
+
+</body>
+
+</html>

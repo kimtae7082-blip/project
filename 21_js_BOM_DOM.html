@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">이전페이지</button>
+    <button id="myButton2">다음페이지</button>
+    <button id="myButton3">새로고침</button>
+    <a href="https://naver.com"> 네이버 </a>
+    <a href="naver.com"> 네이버2 </a>
+    <a href="image/7c01d04f-146f-468a-80d2-68db32ac2cbf.png"> 이미지 </a>
+    
+    <script>
+        console.log("Hello, World! Test");
+
+        //window 객체
+        // window.alert('Hello, World!'); // Output: Alert dialog with message "Hello, World!"
+        // window.confirm('Are you sure?'); // Output: Confirm dialog with message "Are you sure?"
+        // window.prompt('What is your name?'); // Output: Prompt dialog with message "What is your name?" and an input field
+        // console.log(window.innerWidth); // Output: Width of the window's content area
+
+        // redirecting
+        // location.href = 'https://www.naver.com'; // Redirects to the specified URL
+        // console.log(location.href); // Output: Current URL of the page
+
+        // //navigator 객체
+        // console.log(navigator.userAgent); // Output: User agent string of the browser   
+
+        // //history 객체
+        // console.log(history.length); // Output: Number of entries in the session history
+        // history.back(); // Navigates to the previous page in the session history
+        // history.forward(); // Navigates to the next page in the session history
+        // history.go(-2); // Navigates back two pages in the session history
+
+        //screen 객체
+        console.log(screen.width); // Output: Width of the screen in pixels
+        console.log(screen.height); // Output: Height of the screen in pixels
+        console.log(window.innerWidth); // Output: Width of the window's content area
+        console.log(window.innerHeight); // Output: Height of the window's content area
+
+        // Redirecting to a different URL using location.href
+        // Remove the comments from the following lines to test redirection
+        // location.href = 'https://www.naver.com'; // Redirects to the specified URL
+        // location.href = 'http://127.0.0.1:5500/subfolder/test.html'; // Redirects to the specified URL
+
+        const button = document.getElementById('myButton');
+        button.addEventListener('click', () => {
+            history.back(); // Navigates to the previous page in the session history
+        }); 
+        const button2 = document.getElementById('myButton2');
+        button2.addEventListener('click', () => {   
+            history.forward(); // Navigates to the next page in the session history
+        });
+        const button3 = document.getElementById('myButton3');
+        button3.addEventListener('click', () => {
+            location.reload(); // Reloads the current page
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>
