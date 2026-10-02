@@ -542,3 +542,158 @@ allButton.addEventListener(
 
     }
 );
+
+// ========================================
+// 회원 목록 조회
+// Node.js → MySQL
+// ========================================
+
+const btnUsers =
+    document.getElementById("btnUsers");
+
+const userResult =
+    document.getElementById("userResult");
+
+
+btnUsers.addEventListener(
+    "click",
+    async function () {
+
+        userResult.innerHTML = `
+            <div class="alert alert-info">
+                회원 데이터를 불러오는 중...
+            </div>
+        `;
+
+
+        try {
+
+            const response =
+                await fetch("/api/users");
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "회원 데이터를 가져오지 못했습니다."
+                );
+
+            }
+
+
+            if (data.length === 0) {
+
+                userResult.innerHTML = `
+                    <div class="alert alert-warning">
+                        등록된 회원이 없습니다.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            userResult.innerHTML =
+                data.map(
+                    function (user) {
+
+                        return `
+
+                            <div class="user-card">
+
+                                <div class="user-name">
+
+                                    ${user.name}
+
+                                </div>
+
+
+                                <div class="user-info">
+
+                                    ID:
+                                    ${user.userID}
+
+                                </div>
+
+
+                                <div class="user-info">
+
+                                    성별:
+                                    ${user.gender}
+
+                                </div>
+
+
+                                <div class="user-info">
+
+                                    전화:
+                                    ${user.phoneNumber}
+
+                                </div>
+
+
+                                <div class="user-info">
+
+                                    이메일:
+                                    ${user.email}
+
+                                </div>
+
+
+                                <div class="user-info">
+
+                                    주소:
+                                    ${user.address}
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+
+            log(
+                `[회원] ${data.length}명의 회원 정보를 가져왔습니다.`
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "회원 조회 오류:",
+                error
+            );
+
+
+            userResult.innerHTML = `
+
+                <div class="alert alert-danger">
+
+                    회원 데이터를 가져오지 못했습니다.
+
+                    <br>
+
+                    오류:
+                    ${error.message}
+
+                </div>
+
+            `;
+
+
+            log(
+                `[회원 오류] ${error.message}`
+            );
+
+        }
+
+    }
+);

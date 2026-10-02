@@ -1,10 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>날씨 기동기버전</title>
 
@@ -15,251 +18,277 @@
     >
 
     <style>
+
         body {
             background-color: #1a2c3d;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                Roboto, Arial, sans-serif;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
         }
+
+
+        /* =========================
+           날씨 제어판
+        ========================= */
 
         .hero-card {
-            background: linear-gradient(
-                135deg,
-                #0f172a 0%,
-                #1e293b 100%
-            );
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a 0%,
+                    #1e293b 100%
+                );
+
             color: white;
+
             border-radius: 16px;
+
             padding: 30px;
-            box-shadow: 0 10px 25px rgba(15, 25, 42, 0.15);
+
+            box-shadow:
+                0 10px 25px
+                rgba(15, 25, 42, 0.15);
         }
 
+
         .badge-provider {
+
             background-color: #10b981;
+
             font-size: 13px;
+
             padding: 6px 12px;
+
             border-radius: 9999px;
         }
 
+
+        /* =========================
+           진동벨
+        ========================= */
+
         .buzzer-box {
-            border: 2px dashed #cbd5e1;
+
+            border:
+                2px dashed
+                #cbd5e1;
+
             border-radius: 12px;
+
             padding: 20px;
+
             background: white;
-            transition: all 0.3s ease;
+
+            transition:
+                all 0.3s ease;
         }
 
+
         .buzzer-box.pending {
+
             border-color: #f59e0b;
+
             background: #fffbeb;
         }
 
+
         .buzzer-box.fulfilled {
+
             border-color: #10b981;
+
             background: #ecfdf5;
         }
 
+
         .buzzer-box.rejected {
+
             border-color: #ef4444;
+
             background: #fef2f2;
         }
 
+
+        /* =========================
+           콘솔
+        ========================= */
+
         .terminal-window {
+
             background: #090d16;
+
             border-radius: 10px;
+
             padding: 16px;
+
             color: #38bdf8;
-            font-family: Consolas, Monaco, monospace;
+
+            font-family:
+                Consolas,
+                Monaco,
+                monospace;
+
             font-size: 13px;
+
             height: 230px;
+
             overflow-y: auto;
+
             white-space: pre-wrap;
         }
+
+
+        /* =========================
+           회원 카드
+        ========================= */
+
+        .user-card {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-bottom: 10px;
+
+            border: 1px solid #dee2e6;
+
+            box-shadow:
+                0 2px 6px
+                rgba(0, 0, 0, 0.05);
+        }
+
+
+        .user-name {
+
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+
+        .user-info {
+
+            font-size: 14px;
+
+            color: #6c757d;
+
+            margin-top: 4px;
+        }
+
     </style>
+
 </head>
 
 
 <body class="py-5">
 
-    <div class="container" style="max-width: 850px;">
 
-        <!-- =========================
-             날씨 요청 제어판
-        ========================== -->
-
-        <div class="card shadow-sm border-0 mb-4 p-4">
-
-            <h5 class="fw-bold mb-3">
-                1. 날씨 요정 제어판
-            </h5>
+<div
+    class="container"
+    style="max-width: 850px;"
+>
 
 
-            <div class="row g-3 align-items-end">
+    <!-- ===================================
+         1. 날씨 요청 제어판
+    ==================================== -->
 
-                <!-- 도시 선택 -->
-                <div class="col-md-5">
+    <div
+        class="card shadow-sm border-0 mb-4 p-4"
+    >
 
-                    <label
-                        class="form-label small text-muted"
-                        for="citySelect"
-                    >
-                        도시 선택
-                    </label>
+        <h5 class="fw-bold mb-3">
 
-                    <select
-                        id="citySelect"
-                        class="form-select"
-                    >
+            1. 날씨 요정 제어판
 
-                        <option value="seoul">
-                            서울
-                        </option>
-
-                        <option value="busan">
-                            부산
-                        </option>
-
-                        <option value="incheon">
-                            인천
-                        </option>
-
-                        <option value="daegu">
-                            대구
-                        </option>
-
-                        <option value="daejeon">
-                            대전
-                        </option>
-
-                        <option value="gwangju">
-                            광주
-                        </option>
-
-                    </select>
-
-                </div>
+        </h5>
 
 
-                <!-- 버튼 -->
-                <div class="col-md-7 d-flex gap-2">
-
-                    <button
-                        id="btnFetchSingle"
-                        class="btn btn-primary flex-fill py-2 fw-semibold"
-                    >
-                        단일 조회 (async / await)
-                    </button>
+        <div class="row g-3 align-items-end">
 
 
-                    <button
-                        id="btnFetchAll"
-                        class="btn btn-success flex-fill py-2 fw-semibold"
-                    >
-                        6개 도시 병렬 조회 (Promise.all)
-                    </button>
+            <!-- 도시 선택 -->
 
-                </div>
+            <div class="col-md-5">
 
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             진동벨 상태 카드
-        ========================== -->
-
-        <div
-            id="buzzerCard"
-            class="buzzer-box mb-4"
-        >
-
-            <!-- 진동벨 제목 -->
-
-            <div
-                class="d-flex justify-content-between align-items-center mb-1"
-            >
-
-                <h6
-                    class="fw-bold mb-0"
-                    id="buzzerTitle"
+                <label
+                    class="form-label small text-muted"
+                    for="citySelect"
                 >
-                    🔔 진동벨 (Promise) 상태:
-                    대기 준비 완료
-                </h6>
+
+                    도시 선택
+
+                </label>
 
 
-                <span
-                    class="badge bg-secondary"
-                    id="buzzerBadge"
+                <select
+                    id="citySelect"
+                    class="form-select"
                 >
-                    IDLE
-                </span>
+
+                    <option value="seoul">
+                        서울
+                    </option>
+
+                    <option value="busan">
+                        부산
+                    </option>
+
+                    <option value="incheon">
+                        인천
+                    </option>
+
+                    <option value="daegu">
+                        대구
+                    </option>
+
+                    <option value="daejeon">
+                        대전
+                    </option>
+
+                    <option value="gwangju">
+                        광주
+                    </option>
+
+                </select>
 
             </div>
 
 
-            <!-- 진동벨 설명 -->
-
-            <p
-                class="mb-0 text-muted small"
-                id="buzzerDesc"
-            >
-                버튼을 클릭하면 진동벨(Promise)을 받고
-                날씨 조회를 시작합니다.
-            </p>
-
-
-            <!-- =========================
-                 날씨 결과
-            ========================== -->
+            <!-- 날씨 버튼 -->
 
             <div
-                id="weatherResult"
-                class="mt-3 pt-3 border-top d-none"
+                class="col-md-7 d-flex gap-2"
             >
 
-                <div
-                    class="row text-center g-2"
-                    id="resultGrid"
-                ></div>
+                <button
+                    id="btnFetchSingle"
+                    class="btn btn-primary flex-fill py-2 fw-semibold"
+                >
 
-            </div>
+                    단일 조회
+                    (async / await)
 
-        </div>
-
-
-        <!-- =========================
-             터미널 콘솔
-        ========================== -->
-
-        <div class="card shadow-sm border-0 p-4">
-
-            <div
-                class="d-flex justify-content-between align-items-center mb-2"
-            >
-
-                <h6 class="fw-bold mb-0">
-                    📜 비동기 처리 실시간 콘솔
-                    (Console Log)
-                </h6>
+                </button>
 
 
                 <button
-                    class="btn btn-sm btn-outline-secondary"
-                    onclick="clearLog()"
+                    id="btnFetchAll"
+                    class="btn btn-success flex-fill py-2 fw-semibold"
                 >
-                    로그 지우기
+
+                    6개 도시 병렬 조회
+                    (Promise.all)
+
                 </button>
 
-            </div>
-
-
-            <div
-                class="terminal-window"
-                id="terminalLog"
-            >
-                &gt; 시스템 준비 완료.
-                상단 버튼을 클릭해 보세요.
             </div>
 
         </div>
@@ -267,11 +296,172 @@
     </div>
 
 
-    <!-- =========================
-         JavaScript
-    ========================== -->
 
-    <script src="날씨.js"></script>
+    <!-- ===================================
+         2. 회원 데이터
+    ==================================== -->
+
+    <div
+        class="card shadow-sm border-0 mb-4 p-4"
+    >
+
+        <h5 class="fw-bold mb-3">
+
+            2. 회원 데이터
+
+        </h5>
+
+
+        <p class="text-muted small">
+
+            Node.js → MySQL →
+            gmarketDB → userTBL
+
+        </p>
+
+
+        <button
+            id="btnUsers"
+            class="btn btn-dark"
+        >
+
+            회원 목록 불러오기
+
+        </button>
+
+
+        <div
+            id="userResult"
+            class="mt-3"
+        >
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================
+         3. 진동벨 상태 카드
+    ==================================== -->
+
+    <div
+        id="buzzerCard"
+        class="buzzer-box mb-4"
+    >
+
+
+        <div
+            class="d-flex justify-content-between align-items-center mb-1"
+        >
+
+            <h6
+                class="fw-bold mb-0"
+                id="buzzerTitle"
+            >
+
+                🔔 진동벨 (Promise) 상태:
+                대기 준비 완료
+
+            </h6>
+
+
+            <span
+                class="badge bg-secondary"
+                id="buzzerBadge"
+            >
+
+                IDLE
+
+            </span>
+
+        </div>
+
+
+        <p
+            class="mb-0 text-muted small"
+            id="buzzerDesc"
+        >
+
+            버튼을 클릭하면
+            진동벨(Promise)을 받고
+            날씨 조회를 시작합니다.
+
+        </p>
+
+
+        <!-- 날씨 결과 -->
+
+        <div
+            id="weatherResult"
+            class="mt-3 pt-3 border-top d-none"
+        >
+
+            <div
+                class="row text-center g-2"
+                id="resultGrid"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================
+         4. 터미널 콘솔
+    ==================================== -->
+
+    <div
+        class="card shadow-sm border-0 p-4"
+    >
+
+        <div
+            class="d-flex justify-content-between align-items-center mb-2"
+        >
+
+            <h6 class="fw-bold mb-0">
+
+                📜 비동기 처리 실시간 콘솔
+                (Console Log)
+
+            </h6>
+
+
+            <button
+                class="btn btn-sm btn-outline-secondary"
+                onclick="clearLog()"
+            >
+
+                로그 지우기
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="terminal-window"
+            id="terminalLog"
+        >
+
+            &gt; 시스템 준비 완료.
+            상단 버튼을 클릭해 보세요.
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- ===================================
+     JavaScript
+==================================== -->
+
+<script src="날씨.js"></script>
+
 
 </body>
 
